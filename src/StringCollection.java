@@ -1,8 +1,10 @@
+
+
 public class StringCollection {
 
     Element collectionHead;
 
-    private int size() {
+   private  int size() {
 
         int result = 0;
         Element elements = collectionHead;
@@ -23,27 +25,25 @@ public class StringCollection {
         if (collectionHead == null) {
             collectionHead = elementNew;
         } else {
-
             temporaryHead = collectionHead;
             collectionHead = elementNew;
 
             temporaryHead.setPrev(collectionHead);
             collectionHead.setNext(temporaryHead);
-
         }
     }
 
-    String getElement(int n) {
+    String getElement(int index) {
 
         String result = null;
         Element elementCollecion = collectionHead;
         int size = size();
 
-        if (n > size) {
+        if (index > size) {
             throw new IndexOutOfBoundsException("OUT_OF_RANGE");
         } else {
             for (int i = 0; i < size; i++) {
-                if (n == i) {
+                if (index == i) {
                     result = elementCollecion.getValue();
                     break;
                 } else {
@@ -68,20 +68,32 @@ public class StringCollection {
         return null;
     }
 
+    Element getElementForIndex(int index) {
+
+        Element element = collectionHead;
+        for (int i = 0; i < size(); i++) {
+
+            if (i == index) {
+                return element;
+            } else element = element.getNext();
+        }
+        return null;
+    }
+
     Boolean removeElement(String a) {
 
         int elementToremoveIndex = getElement(a);
-        Element first;
-        Element last;
+        Element elementToremove = getElementForIndex(elementToremoveIndex);
 
-        if (size() == elementToremoveIndex) {
+        System.out.println("Usuwanie wartosci - " + elementToremove.getValue() + "  " + elementToremoveIndex);
+        if (0 == elementToremoveIndex) {
 
             collectionHead = collectionHead.getNext();
             collectionHead.setPrev(null);
+            System.out.println(size());
             return true;
-
         }
-    return false;
+        return false;
     }
 }
 

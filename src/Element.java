@@ -2,8 +2,8 @@ import java.util.Objects;
 
 public class Element {
 
-    Element prev;
-    Element next;
+    private Element prev;
+    private Element next;
 
     public String getValue() {
         return value;
